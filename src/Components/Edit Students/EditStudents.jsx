@@ -1,16 +1,16 @@
-import React from "react";
-import { Card } from "react-bootstrap";
+import React from 'react'
+import { Card } from 'react-bootstrap'
 
-const AddStudent = () => {
-  return (
-    <div>
-      <div className="container d-flex justify-content-center">
+const EditStudents = () => {
+    return (
+        <div>
+            <div className="container d-flex justify-content-center">
         <form action="">
           <div className="row pt-2">
             <Card style={{ width: "50rem" }} className="py-3 shadow" >
            
               <Card.Body>
-                <Card.Title className="text-center" >ADD STUDENT INFORMATION </Card.Title>
+                <Card.Title className="text-center" > EDIT STUDENT INFORMATION</Card.Title>
                 <div className="row pt-2">
                   <div className="col-2 text-end">
                     <label htmlFor="">Full Name:</label>
@@ -166,8 +166,8 @@ const AddStudent = () => {
           </div>
         </form>
       </div>
-    </div>
-  );
-};
+        </div>
+    )
+}
 
-export default AddStudent;
+export default EditStudents

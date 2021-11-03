@@ -8,7 +8,7 @@ const Login = () => {
              <div className="d-flex justify-content-center" >
       <Card style={{ width: "25rem" }} className="shadow">
         <Card.Body>
-          <Card.Title>Login</Card.Title>
+          <Card.Title>LOGIN ACCOUNT</Card.Title>
           <form action="">
            
             <input

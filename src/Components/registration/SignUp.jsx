@@ -7,7 +7,7 @@ const SignUp = () => {
              <div className="d-flex justify-content-center" >
       <Card style={{ width: "25rem" }} className="shadow">
         <Card.Body>
-          <Card.Title>Registration</Card.Title>
+          <Card.Title> REGISTRATION</Card.Title>
           <form action="">
             <input
               className="form-control shadow"
