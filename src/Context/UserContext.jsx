@@ -3,7 +3,7 @@ import axios from "axios";
 export const userContextG = React.createContext();
 
 const UserContext = ({ children }) => {
-  const [token, setToken] = useState([]);
+  const [token, setToken] = useState(null);
   const [serverSms, setserverSms] = useState();
   const [sucessSms, setsucessSms] = useState();
 
@@ -35,22 +35,23 @@ const UserContext = ({ children }) => {
     const storeCollection = () => {
         let store = JSON.parse(localStorage.getItem('login'))
         if (store) {
-            setToken(store)
+            setToken(store.token)
         }
     }
 
     useEffect(() => {
        storeCollection()
     }, [])
-
-    
-  console.log(token);
-  console.log(sucessSms);
-
+   
+  const logOut = () => {
+    localStorage.clear()
+    window.location.reload(false)
+  }
+  
   return (
     <div>
       <userContextG.Provider
-        value={{ signup, login, serverSms, sucessSms, setserverSms }}
+        value={{ signup, login, serverSms, sucessSms, setserverSms,token ,logOut}}
       >
         {children}
       </userContextG.Provider>

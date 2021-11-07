@@ -3,9 +3,10 @@ import { Card } from "react-bootstrap";
 import { userContextG } from "../../Context/UserContext";
 
 const Login = () => {
-  const [email, setemail] = useState();
-  const [password, setpassword] = useState();
-  const { login ,serverSms,sucessSms,setserverSms,} = useContext(userContextG);
+  const [email, setemail] = useState('');
+  const [password, setpassword] = useState('');
+  const { login, serverSms, sucessSms, setserverSms } =
+    useContext(userContextG);
 
   const studentLoginSubmitHandel = (e) => {
     e.preventDefault();
@@ -15,13 +16,18 @@ const Login = () => {
     };
     setemail("");
     setpassword("");
-    setserverSms("")
+    setserverSms("");
 
     login(LoginData);
   };
 
   return (
+
+
     <div>
+      <div class="alert alert-primary" role="alert">
+  This is a primary alert—check it out!
+</div>
       <div className="container text-center">
         <div className="d-flex justify-content-center">
           <Card style={{ width: "25rem" }} className="shadow">
@@ -32,7 +38,6 @@ const Login = () => {
                   className="form-control shadow"
                   type="email"
                   placeholder="Email"
-                  name=""
                   onChange={(e) => {
                     setemail(e.target.value);
                   }}
@@ -43,7 +48,6 @@ const Login = () => {
                   className="form-control shadow"
                   type="password"
                   placeholder="Password"
-                  name=""
                   onChange={(e) => {
                     setpassword(e.target.value);
                   }}
@@ -64,7 +68,8 @@ const Login = () => {
           </Card>
         </div>
       </div>
-    </div>
+    </div >
+   
   );
 };
 
