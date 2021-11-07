@@ -1,47 +1,71 @@
-import React from 'react'
-import { Card } from 'react-bootstrap'
+import React, { useContext, useState } from "react";
+import { Card } from "react-bootstrap";
+import { userContextG } from "../../Context/UserContext";
 
 const Login = () => {
-    return (
-        <div>
-            <div className="container text-center">
-             <div className="d-flex justify-content-center" >
-      <Card style={{ width: "25rem" }} className="shadow">
-        <Card.Body>
-          <Card.Title>LOGIN ACCOUNT</Card.Title>
-          <form action="">
-           
-            <input
-              className="form-control shadow"
-              type="email"
-              placeholder="Email"
-              name=""
-              id=""
-            />{" "}
-            <br />
-            <input
-              className="form-control shadow"
-              type="password"
-              placeholder="Password"
-              name=""
-              id=""
-            />{" "}
-            <br />
-            
-            <br />
-            <input
-              type="submit"
-              value="Login"
-              className="form-control btn btn-info shadow"
-            />
-          </form>
-              </Card.Body>
-              <p>Don't have an account? Sign Up</p>
-      </Card>
-    </div>
- </div>
-        </div>
-    )
-}
+  const [email, setemail] = useState();
+  const [password, setpassword] = useState();
+  const { login ,serverSms,sucessSms,setserverSms,} = useContext(userContextG);
 
-export default Login
+  const studentLoginSubmitHandel = (e) => {
+    e.preventDefault();
+    const LoginData = {
+      email,
+      password,
+    };
+    setemail("");
+    setpassword("");
+    setserverSms("")
+
+    login(LoginData);
+  };
+
+  return (
+    <div>
+      <div className="container text-center">
+        <div className="d-flex justify-content-center">
+          <Card style={{ width: "25rem" }} className="shadow">
+            <Card.Body>
+              <Card.Title>LOGIN ACCOUNT</Card.Title>
+              <form action="" onSubmit={studentLoginSubmitHandel}>
+                <input
+                  className="form-control shadow"
+                  type="email"
+                  placeholder="Email"
+                  name=""
+                  onChange={(e) => {
+                    setemail(e.target.value);
+                  }}
+                  value={email}
+                />
+                <br />
+                <input
+                  className="form-control shadow"
+                  type="password"
+                  placeholder="Password"
+                  name=""
+                  onChange={(e) => {
+                    setpassword(e.target.value);
+                  }}
+                  value={password}
+                />
+                <br />
+
+                <br />
+                <input
+                  type="submit"
+                  value="Login"
+                  className="form-control btn btn-info shadow"
+                />
+              </form>
+            </Card.Body>
+            <p>{serverSms}</p>
+            <p>Don't have an account? Sign Up</p>
+          </Card>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Login;
