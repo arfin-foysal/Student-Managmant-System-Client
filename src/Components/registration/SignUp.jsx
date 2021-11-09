@@ -40,8 +40,7 @@ const SignUp = () => {
       email,
       password,
     };
-    setemail("");
-    setpassword("");
+   
     setserverSms("");
 
     login(LoginData);
@@ -49,7 +48,7 @@ const SignUp = () => {
    
   return (
    
-    <div className="container text-center">
+    <div className="container  text-center" style={{padding:"90px"}}>
       {!isLogin ? (
         <div className="d-flex justify-content-center">
         <Card style={{ width: "25rem" }} className="shadow">
@@ -104,7 +103,7 @@ const SignUp = () => {
               />
             </form>
             </div>
-            <p>{error}{serverSms }</p>
+            <p className="text-danger">{error}{serverSms }</p>
           </Card.Body>
             <p>Have an account?<span style={{cursor:"pointer",color:"blue" }} onClick={() => setisLogin(true)} > Log in now</span></p>
          
@@ -145,7 +144,7 @@ const SignUp = () => {
               />
             </form>
           </Card.Body>
-          <p>{serverSms}</p>
+          <p className="text-danger">{serverSms}</p>
           <p>Don't have an account? <span style={{cursor:"pointer",color:"blue" }}  onClick={()=>setisLogin(false)}>Sign Up</span></p>
         </Card>
       </div>

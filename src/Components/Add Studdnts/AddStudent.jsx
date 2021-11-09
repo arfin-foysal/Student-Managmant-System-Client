@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Card } from "react-bootstrap";
-import axios from "axios";
+import { Link } from "react-router-dom";
+import { studentCentextData } from "../../Context/StudentContext";
 
 const AddStudent = () => {
+  const {addStudent} = useContext(studentCentextData)
   const [name, setname] = useState("");
   const [studentId, setstudentId] = useState("");
   const [email, setemail] = useState("");
-  const [number, setnumber] = useState();
+  const [number, setnumber] = useState("");
   const [session, setsession] = useState("");
   const [department, setdepartment] = useState("");
   const [religion, setreligion] = useState("");
@@ -28,14 +30,7 @@ const AddStudent = () => {
       dob,
       gender,
     };
-    const headers = { 
-      'Content-type': 'Application/json',
-      // 'Authorization': 'Bearer my-token'
-  };
-    axios
-      .post("http://localhost:8080/student",allInfo,{headers})
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err));
+      addStudent(allInfo)
   };
 
   return (
@@ -60,8 +55,7 @@ const AddStudent = () => {
                       className="form-control shadow text-start "
                       type="text"
                       placeholder="Full Name"
-                      name=""
-                      id=""
+                     value={name}
                     />
                   </div>
                 </div>
@@ -77,8 +71,7 @@ const AddStudent = () => {
                       className="form-control shadow text-start"
                       type="text"
                       placeholder="Student Id"
-                      name=""
-                      id=""
+                      value={studentId}
                     />
                   </div>
                 </div>
@@ -94,8 +87,7 @@ const AddStudent = () => {
                       className="form-control shadow text-start"
                       type="email"
                       placeholder="Email"
-                      name=""
-                      id=""
+                     value={email}
                     />
                   </div>
                 </div>
@@ -111,8 +103,7 @@ const AddStudent = () => {
                       className="form-control shadow text-start"
                       type="number"
                       placeholder="Number"
-                      name=""
-                      id=""
+                      value={number}
                     />
                   </div>
                 </div>
@@ -128,8 +119,7 @@ const AddStudent = () => {
                       className="form-control shadow text-start"
                       type="text"
                       placeholder="Session"
-                      name=""
-                      id=""
+                     value={session}
                     />
                   </div>
                 </div>
@@ -145,8 +135,7 @@ const AddStudent = () => {
                       className="form-control shadow text-start"
                       type="text"
                       placeholder="Department"
-                      name=""
-                      id=""
+                  value={department}
                     />
                   </div>
                 </div>
@@ -162,8 +151,7 @@ const AddStudent = () => {
                       className="form-control shadow text-start"
                       type="text"
                       placeholder="Religion"
-                      name=""
-                      id=""
+                     value={religion}
                     />
                   </div>
                 </div>
@@ -181,8 +169,7 @@ const AddStudent = () => {
                       onChang={(e) => {
                         setimages(e.target.value);
                       }}
-                      name=""
-                      id=""
+                     value={images}
                     />
                   </div>
                 </div>
@@ -198,8 +185,7 @@ const AddStudent = () => {
                       className="form-control shadow text-start"
                       type="date"
                       placeholder="Date Of Birth"
-                      name=""
-                      id=""
+                      value={dob}
                     />
                   </div>
                 </div>
@@ -233,7 +219,7 @@ const AddStudent = () => {
               </Card.Body>
               <div className="row">
                 <div className="col-6 text-end">
-                  <button className="btn btn-primary">Cancel</button>
+                  <Link to="/"><button className="btn btn-primary">Cancel</button></Link>
                 </div>
                 <div className="col-6">
                   <input
