@@ -5,14 +5,16 @@ import { Link } from "react-router-dom";
 import { studentCentextData } from "../../Context/StudentContext";
 
 const ViewAllInfo = () => {
-  const { state } = useContext(studentCentextData);
+  const { studentsdata } = useContext(studentCentextData);
   const { id } = useParams();
-  const viewStudent = state.student.filter((std) => std._id === id);
+  const viewStudent = studentsdata.filter((std) => std._id === id);
 
   return (
     <div>
       {viewStudent.map((student) => (
+               
         <div className="container">
+          
           <div className="row shadow pt-5">
             <div className="text-center">
               <h2>ALL INFORMATION</h2>

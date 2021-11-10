@@ -1,25 +1,43 @@
 import axios from "axios";
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import StudentReducer from "./StudentReducer";
-import jwt_decode from 'jwt-decode'
-export const studentCentextData = React.createContext();
 
-const initialState = {
-  student: [],
-};
+export const studentCentextData = React.createContext();
 
 const StudentContext = ({ children }) => {
   const history = useHistory();
-  const [state, dispatch] = useReducer(StudentReducer, initialState);
+
+  const [studentsdata, setstudentsdata] = useState([]);
+  const [search, setSearch] = useState("")
+  const [searchResult, setsearchResult] = useState([])
+
   useEffect(() => {
     studentData();
   }, []);
+  
 
+  const srcHandeler = (search) => {
+    setSearch(search)
+    if (search !== "") {
+      const newStudentList = studentsdata.filter((student) => {
+        return Object.values(student)
+          .join(" ")
+          .toLowerCase()
+          .includes(search.toLowerCase());
+      })
+      setsearchResult(newStudentList)
+    } else {
+      setsearchResult(studentsdata)
+    }
+ }
+
+
+  
   const studentData = async () => {
     try {
       const res = await axios.get("http://localhost:8080/student");
-      dispatch({ type: "GET_DATA", payload: res.data });
+
+      setstudentsdata(res.data);
     } catch (error) {
       console.log(error);
     }
@@ -54,10 +72,8 @@ const StudentContext = ({ children }) => {
     history.push("/");
   };
 
-
   // let atoken = token
   //   console.log(atoken);
-
 
   const removeStudent = async (id) => {
     try {
@@ -67,13 +83,11 @@ const StudentContext = ({ children }) => {
     }
     studentData();
   };
-    
-  
-
+ 
   return (
     <div>
       <studentCentextData.Provider
-        value={{ state, addStudent, removeStudent, editStudent }}
+        value={{searchResult, studentsdata, addStudent, removeStudent, editStudent ,search,srcHandeler}}
       >
         {children}
       </studentCentextData.Provider>

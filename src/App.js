@@ -8,7 +8,7 @@ import Header from "./Components/Navbar/Header";
 import Login from "./Components/registration/Login";
 import SignUp from "./Components/registration/SignUp";
 import ViewAllInfo from "./Components/View All info/ViewAllInfo";
-import { Route, Redirect, Switch } from "react-router-dom";
+import { Route, Redirect, Switch, BrowserRouter } from "react-router-dom";
 
 function App() {
   const { Atoken } = useContext(userContextG);
@@ -18,24 +18,28 @@ function App() {
   if (Atoken === null) {
     userRoute = (
       <>
-        <Switch>
-          <Route exact path="/signup" component={SignUp} />
-          <Route path="/login" exact component={Login} />
-          <Redirect to="/signup" />
-        </Switch>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/signup" component={SignUp} />
+            <Route path="/login" exact component={Login} />
+            <Redirect to="/signup" />
+          </Switch>
+        </BrowserRouter>
       </>
     );
   } else {
     userRoute = (
       <>
-        <Route component={Header} />
-        <Switch>
-          <Route path="/" exact component={DitlesHeader} />
-          <Route path="/singal/:id" exact component={ViewAllInfo} />
-          <Route path="/edit/:id" exact component={EditStudents} />
-          <Route path="/addstudent" exact component={ AddStudent}/>
-          <Redirect to="/" />
-        </Switch>
+        <BrowserRouter>
+          <Route component={Header} />
+          <Switch>
+            <Route path="/" exact component={DitlesHeader} />
+            <Route path="/singal/:id" exact component={ViewAllInfo} />
+            <Route path="/edit/:id" exact component={EditStudents} />
+            <Route path="/addstudent" exact component={AddStudent} />
+            <Redirect to="/" />
+          </Switch>
+        </BrowserRouter>
       </>
     );
   }

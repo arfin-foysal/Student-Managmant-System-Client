@@ -200,6 +200,7 @@ const AddStudent = () => {
                       onChange={(e) => {
                         setgender(e.target.value);
                       }}
+                      value={gender}
                     >
                       <option className="text-start" selected>
                         Gender

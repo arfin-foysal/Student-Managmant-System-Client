@@ -55,11 +55,18 @@ const UserContext = ({ children }) => {
     localStorage.clear();
     window.location.reload(false);
   };
+    
 
-  setTimeout(function () {
+  setInterval(() => {
     localStorage.clear();
     window.location.reload(false);
-   },2*60*60*1000);
+  }, 2*60*60*1000);
+
+
+  // setTimeout(function () {
+  //   localStorage.clear();
+  //   window.location.reload(false);
+  //  },);
 
   return (
     <div>

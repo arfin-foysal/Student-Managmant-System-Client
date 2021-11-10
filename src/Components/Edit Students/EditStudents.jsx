@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import { studentCentextData } from '../../Context/StudentContext'
 
 const EditStudents = () => {
-  const { editStudent,state } = useContext(studentCentextData)
+  const { editStudent} = useContext(studentCentextData)
   const { id } = useParams();
  const history= useHistory()
 
@@ -223,7 +223,7 @@ const EditStudents = () => {
                           name="gender"
                           value={gender}
                     >
-                          <option className="text-start" selected>Gender</option>
+                        <option className="text-start" selected>{gender }</option>
                       <option className="text-start" value="Male">Male</option>
                       <option className="text-start" value="Femail">Femail</option>
                       <option className="text-start" value="Other">Other</option>

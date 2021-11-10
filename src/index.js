@@ -2,21 +2,20 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
+
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
 import UserContext from "./Context/UserContext";
 import StudentContext from "./Context/StudentContext";
-import { BrowserRouter } from "react-router-dom";
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
     <UserContext>
       <StudentContext>
-      <App />
+        <App />
       </StudentContext>
     </UserContext>
-    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );
